@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KrishiCash – Demo Presentation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Slide Stage ── */
+    #stage {
+      width: 960px;
+      height: 540px;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      background: #0a0f1e;
+      padding: 52px 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+    }
+    .slide.exit {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+
+    /* ── Pill Badge ── */
+    .pill {
+      display: inline-block;
+      background: #14532d;
+      color: #4ade80;
+      border: 1px solid #22c55e;
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 14px;
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+
+    /* ── Typography ── */
+    .slide-title {
+      font-size: 56px;
+      font-weight: 800;
+      color: #22c55e;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .slide-subtitle {
+      font-size: 18px;
+      color: #9ca3af;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .slide-team {
+      font-size: 15px;
+      color: #e5e7eb;
+      margin-top: 4px;
+    }
+    .slide-team span { color: #4ade80; font-weight: 600; }
+
+    .slide-heading {
+      font-size: 30px;
+      font-weight: 700;
+      color: #22c55e;
+      border-bottom: 3px solid #16a34a;
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+    }
+
+    ul.points {
+      list-style: none;
+      padding: 0;
+    }
+    ul.points li {
+      font-size: 17px;
+      color: #e5e7eb;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      padding-left: 24px;
+      position: relative;
+    }
+    ul.points li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: #22c55e;
+      font-size: 10px;
+      top: 5px;
+    }
+    ul.points li strong { color: #4ade80; }
+    ul.points li sub {
+      font-size: 14px;
+      color: #6b7280;
+      display: block;
+      padding-left: 4px;
+    }
+
+    .callout {
+      background: linear-gradient(135deg, #111827, #0d1a2d);
+      border-left: 4px solid #22c55e;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 20px;
+      font-size: 15px;
+      color: #d1fae5;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .callout strong { color: #4ade80; }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    th {
+      background: #111827;
+      color: #4ade80;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid #16a34a;
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #1f2937;
+      color: #e5e7eb;
+    }
+    td:first-child { font-size: 15px; }
+
+    /* ── Stat grid ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .stat-box {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .stat-box .num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #22c55e;
+      display: block;
+    }
+    .stat-box .lbl {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 2px;
+      display: block;
+    }
+
+    /* ── Roadmap ── */
+    .roadmap { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .roadmap-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #14532d;
+      border: 2px solid #22c55e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #4ade80;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .roadmap-text strong {
+      display: block;
+      font-size: 16px;
+      color: #4ade80;
+      margin-bottom: 2px;
+    }
+    .roadmap-text span {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    /* ── Thank You ── */
+    .thankyou-title {
+      font-size: 62px;
+      font-weight: 800;
+      color: #22c55e;
+      margin-bottom: 14px;
+    }
+    .github-link {
+      font-size: 15px;
+      color: #4ade80;
+      background: #111827;
+      border: 1px solid #1f2937;
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 16px;
+      font-family: monospace;
+    }
+
+    /* ── Progress bar ── */
+    #progress-bar {
+      width: 960px;
+      height: 4px;
+      background: #1f2937;
+      border-radius: 2px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+    #progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    /* ── Controls ── */
+    #controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .btn {
+      background: #111827;
+      border: 1px solid #1f2937;
+      color: #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 22px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: #1f2937; border-color: #374151; }
+    .btn.primary {
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      border-color: #22c55e;
+      color: #fff;
+      font-size: 14px;
+      padding: 10px 28px;
+    }
+    .btn.primary:hover { opacity: 0.9; }
+    #slide-counter {
+      font-size: 13px;
+      color: #6b7280;
+      min-width: 70px;
+      text-align: center;
+    }
+    #speaking-indicator {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #4ade80;
+    }
+    #speaking-indicator.active { display: flex; }
+    .dot-pulse span {
+      display: inline-block;
+      width: 5px; height: 5px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 1.2s infinite;
+    }
+    .dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
+    .dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* ── Subtitle captions ── */
+    #caption {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.75);
+      color: #e5e7eb;
+      font-size: 13px;
+      padding: 6px 18px;
+      border-radius: 20px;
+      max-width: 80%;
+      text-align: center;
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      line-height: 1.5;
+    }
+    #caption.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- Slide 1: Title -->
+  <div class="slide active" id="slide-0">
+    <div class="pill">NABARD HACKATHON · GFF 2026</div>
+    <div class="slide-title">KrishiCash</div>
+    <div class="slide-subtitle">AI-Powered Cash Flow & Risk Oracle<br>for Rural Micro-enterprises</div>
+    <div class="slide-team" style="margin-top:18px"><span>Team KrishiCash</span> &nbsp;·&nbsp; AI for Rural Finance Track</div>
+  </div>
+
+  <!-- Slide 2: Problem -->
+  <div class="slide" id="slide-1">
+    <div class="slide-heading">🚨 The Core Problem</div>
+    <ul class="points">
+      <li><strong>87 million+</strong> rural households have no access to formal credit</li>
+      <li><strong>No CIBIL score</strong> — banks cannot assess risk without formal records</li>
+      <li><strong>Hidden risks</strong> — droughts, price crashes, and pest attacks cause surprise NPAs</li>
+      <li><strong>₹1.2 lakh crore</strong> lost annually to rural non-performing assets</li>
+    </ul>
+  </div>
+
+  <!-- Slide 3: Solution -->
+  <div class="slide" id="slide-2">
+    <div class="slide-heading">💡 Our Solution: KrishiCash</div>
+    <div class="callout">
+      KrishiCash predicts future cash flows using <strong>satellite imagery, weather data & commodity prices</strong> — enabling data-driven lending without any formal credit history.
+    </div>
+    <ul class="points">
+      <li><strong>Fast</strong> — Real-time API-driven lending decisions</li>
+      <li><strong>Inclusive</strong> — Zero formal credit history required</li>
+      <li><strong>Explainable</strong> — Every risk score is backed by transparent reasoning</li>
+    </ul>
+  </div>
+
+  <!-- Slide 4: Tech -->
+  <div class="slide" id="slide-3">
+    <div class="slide-heading">⚙️ How It Works</div>
+    <table>
+      <tr><th>Data Signal</th><th>Source</th><th>What It Reveals</th></tr>
+      <tr><td>🛰️ Satellite NDVI</td><td>Google Earth Engine</td><td>Crop health & yield potential</td></tr>
+      <tr><td>🌧️ Rainfall Forecast</td><td>IMD / OpenWeather</td><td>Climate risk for next 3 months</td></tr>
+      <tr><td>📊 Commodity Price</td><td>eNAM / Agmarknet</td><td>Market volatility & price risk</td></tr>
+      <tr><td>💧 Soil Moisture</td><td>ISRO Bhuvan</td><td>Ground-level agricultural stress</td></tr>
+      <tr><td>📱 Repayment History</td><td>MFI Data</td><td>Behavioural creditworthiness</td></tr>
+    </table>
+  </div>
+
+  <!-- Slide 5: Business -->
+  <div class="slide" id="slide-4">
+    <div class="slide-heading">💼 Business Model & Impact</div>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <span class="num">₹15–₹50</span>
+        <span class="lbl">Per risk assessment (B2B SaaS API)</span>
+      </div>
+      <div class="stat-box">
+        <span class="num">15–20%</span>
+        <span class="lbl">Estimated NPA reduction for lenders</span>
+      </div>
+      <div class="stat-box">
+        <span class="num">5M+</span>
+        <span class="lbl">New rural borrowers reached by 2028</span>
+      </div>
+      <div class="stat-box">
+        <span class="num">MFIs · RRBs</span>
+        <span class="lbl">Target customer segments</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Roadmap -->
+  <div class="slide" id="slide-5">
+    <div class="slide-heading">🗺️ Roadmap</div>
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-dot">P1</div>
+        <div class="roadmap-text">
+          <strong>Phase 1 — Now (GFF 2026)</strong>
+          <span>Prototype AI dashboard and cash flow scoring model</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot">P2</div>
+        <div class="roadmap-text">
+          <strong>Phase 2 — 6 Months</strong>
+          <span>Live pilot integration with a regional MFI for real-world validation</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot">P3</div>
+        <div class="roadmap-text">
+          <strong>Phase 3 — Year 1+</strong>
+          <span>Multi-state rollout and automated crop insurance payouts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Thank You -->
+  <div class="slide" id="slide-6">
+    <div class="pill">TEAM KRISHICASH</div>
+    <div class="thankyou-title">Thank You 🌾</div>
+    <div class="slide-subtitle">Ready to revolutionize rural finance with AI.</div>
+    <div class="github-link">🌐 github.com/swatiicfai/KrishiCash</div>
+  </div>
+
+  <div id="caption"></div>
+</div>
+
+<div id="progress-bar"><div id="progress-fill"></div></div>
+
+<div id="controls">
+  <button class="btn" onclick="prevSlide()">◀ Prev</button>
+  <button class="btn primary" id="playBtn" onclick="togglePlay()">▶ Play with Voice</button>
+  <button class="btn" onclick="nextSlide()">Next ▶</button>
+  <span id="slide-counter">1 / 7</span>
+  <div id="speaking-indicator">
+    <div class="dot-pulse"><span></span><span></span><span></span></div>
+    Speaking...
+  </div>
+</div>
+
+<script>
+  const SLIDES = [
+    {
+      caption: "Welcome to KrishiCash.",
+      script: `Welcome to KrishiCash — an AI-powered Cash Flow and Risk Oracle for rural micro-enterprises, built for the NABARD Hackathon at GFF 2026.`
+    },
+    {
+      caption: "87M+ rural households locked out of credit.",
+      script: `Here is the core problem. Over 87 million rural households in India have absolutely no access to formal credit. Banks reject them because they have no CIBIL score and no formal financial records. Lenders, on the other hand, face surprise loan defaults from hidden risks like droughts and market price crashes. This results in over 1.2 lakh crore rupees lost to rural non-performing assets every single year.`
+    },
+    {
+      caption: "AI-driven decisions. No credit history needed.",
+      script: `KrishiCash is our solution. It is a B2B AI platform that predicts future cash flows using satellite imagery, weather forecasts, and live commodity prices. This means lending institutions can make fast, data-driven decisions without requiring any formal credit history. The system is fast, inclusive, and fully explainable — every risk score comes with a clear reason.`
+    },
+    {
+      caption: "5 real-world data signals power our AI model.",
+      script: `Here is how it works. KrishiCash synthesizes five alternative data signals. First, satellite NDVI from Google Earth Engine to assess crop health. Second, rainfall forecasts from IMD and OpenWeather for climate risk. Third, live commodity prices from eNAM and Agmarknet for market risk. Fourth, soil moisture data from ISRO Bhuvan. And fifth, historical repayment data from the MFI's own systems. Together, these signals power our AI inference engine.`
+    },
+    {
+      caption: "B2B SaaS — ₹15 to ₹50 per assessment.",
+      script: `Our business model is a B2B SaaS API. We charge microfinance institutions and rural banks between 15 and 50 rupees per risk assessment. This helps lenders reduce non-performing assets by an estimated 15 to 20 percent, while safely expanding their credit portfolio to 5 million new rural borrowers by 2028.`
+    },
+    {
+      caption: "3 phases to scale across rural India.",
+      script: `Our roadmap is in three phases. In Phase 1, which is right now, we have built the prototype AI dashboard and scoring model. In Phase 2, within 6 months, we plan to run a live pilot with a regional MFI. And in Phase 3, within a year, we aim for a multi-state rollout and expansion into automated crop insurance payouts using the same satellite data intelligence.`
+    },
+    {
+      caption: "Thank you — github.com/swatiicfai/KrishiCash",
+      script: `Thank you for watching the KrishiCash demo. We are Team KrishiCash, and we are ready to revolutionize rural finance with AI. Our full prototype is live on GitHub at github dot com slash swatiicfai slash KrishiCash. We look forward to presenting at GFF 2026!`
+    }
+  ];
+
+  let current = 0;
+  let isPlaying = false;
+  let autoAdvance = false;
+  const synth = window.speechSynthesis;
+  let utterance = null;
+
+  function getVoice() {
+    const voices = synth.getVoices();
+    // Prefer a female English voice
+    const preferred = ['Samantha', 'Google UK English Female', 'Microsoft Zira', 'Google US English', 'Karen', 'Moira', 'Tessa', 'Veena'];
+    for (const name of preferred) {
+      const v = voices.find(v => v.name.includes(name));
+      if (v) return v;
+    }
+    // Fallback: any female English voice
+    return voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('female'))
+      || voices.find(v => v.lang.startsWith('en'))
+      || voices[0];
+  }
+
+  function showSlide(index) {
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach((s, i) => {
+      s.classList.remove('active', 'exit');
+      if (i === index) s.classList.add('active');
+      else if (i < index) s.classList.add('exit');
+    });
+    document.getElementById('slide-counter').textContent = `${index + 1} / ${SLIDES.length}`;
+    const pct = ((index + 1) / SLIDES.length) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    showCaption(SLIDES[index].caption);
+  }
+
+  function showCaption(text) {
+    const el = document.getElementById('caption');
+    el.textContent = text;
+    el.classList.add('visible');
+  }
+
+  function speak(text, onEnd) {
+    synth.cancel();
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = getVoice();
+    utterance.rate = 0.93;
+    utterance.pitch = 1.05;
+    utterance.volume = 1;
+    document.getElementById('speaking-indicator').classList.add('active');
+    utterance.onend = () => {
+      document.getElementById('speaking-indicator').classList.remove('active');
+      if (onEnd) onEnd();
+    };
+    utterance.onerror = () => {
+      document.getElementById('speaking-indicator').classList.remove('active');
+    };
+    synth.speak(utterance);
+  }
+
+  function speakAndAdvance(index) {
+    if (index >= SLIDES.length) {
+      stopPresentation();
+      return;
+    }
+    showSlide(index);
+    speak(SLIDES[index].script, () => {
+      if (isPlaying) {
+        setTimeout(() => speakAndAdvance(index + 1), 800);
+      }
+    });
+  }
+
+  function togglePlay() {
+    if (isPlaying) {
+      stopPresentation();
+    } else {
+      startPresentation();
+    }
+  }
+
+  function startPresentation() {
+    isPlaying = true;
+    document.getElementById('playBtn').textContent = '⏹ Stop';
+    // Ensure voices are loaded
+    if (synth.getVoices().length === 0) {
+      synth.onvoiceschanged = () => speakAndAdvance(current);
+    } else {
+      speakAndAdvance(current);
+    }
+  }
+
+  function stopPresentation() {
+    isPlaying = false;
+    synth.cancel();
+    document.getElementById('playBtn').textContent = '▶ Play with Voice';
+    document.getElementById('speaking-indicator').classList.remove('active');
+  }
+
+  function nextSlide() {
+    stopPresentation();
+    current = Math.min(current + 1, SLIDES.length - 1);
+    showSlide(current);
+  }
+
+  function prevSlide() {
+    stopPresentation();
+    current = Math.max(current - 1, 0);
+    showSlide(current);
+  }
+
+  // Load voices
+  if (typeof speechSynthesis !== 'undefined') {
+    speechSynthesis.getVoices();
+    speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'p' || e.key === 'P') togglePlay();
+  });
+
+  // Initial render
+  showSlide(0);
+</script>
+</body>
+</html>
