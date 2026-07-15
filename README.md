@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
 ### 🌟 Quick Links
-- 🚀 **Live Demo:** [krishi-cash-91lz7cd08-context-onboarding-buddy.vercel.app](https://krishi-cash-91lz7cd08-context-onboarding-buddy.vercel.app/)
+- 🚀 **Live Demo:** [krishi-cash.vercel.app](https://krishi-cash.vercel.app/)
 - 📺 **Video Presentation:** [YouTube Link](https://youtu.be/KwSMy0TL3t8)
 - 📊 **Pitch Deck:** [KrishiCash_Idea_Deck.pdf](./KrishiCash_Idea_Deck.pdf)
 
