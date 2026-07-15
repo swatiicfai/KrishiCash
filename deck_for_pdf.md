@@ -3,126 +3,167 @@ marp: true
 theme: default
 class: invert
 style: |
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
   section {
     background-color: #0a0f1e;
     color: #e5e7eb;
     font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    padding: 35px 55px;
-  }
-  h1, h2, h3 {
-    color: #22c55e;
+    font-size: 20px;
+    padding: 55px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   h1 {
-    font-size: 28px;
+    color: #22c55e;
+    font-size: 52px;
     font-weight: 800;
-    margin: 0 0 4px 0;
+    margin: 0 0 8px 0;
+    line-height: 1.1;
   }
   h2 {
-    font-size: 20px;
+    color: #22c55e;
+    font-size: 32px;
     font-weight: 700;
-    border-bottom: 2px solid #16a34a;
-    padding-bottom: 5px;
-    margin: 0 0 12px 0;
+    border-bottom: 3px solid #16a34a;
+    padding-bottom: 8px;
+    margin: 0 0 24px 0;
   }
   h3 {
-    font-size: 14px;
+    font-size: 18px;
     color: #9ca3af;
     font-weight: 400;
-    margin: 3px 0 0 0;
+    margin: 6px 0 0 0;
   }
   p {
-    font-size: 13px;
-    line-height: 1.5;
-    margin: 5px 0;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 8px 0;
   }
   strong {
     color: #4ade80;
   }
+  em {
+    color: #93c5fd;
+    font-style: normal;
+  }
   ul {
-    font-size: 13px;
-    line-height: 1.5;
-    margin: 0;
-    padding-left: 1.2em;
+    font-size: 18px;
+    line-height: 1.6;
+    padding-left: 1.3em;
+    margin: 8px 0;
   }
   li {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  li li {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #9ca3af;
+  }
+  .tag {
+    display: inline-block;
+    background: #14532d;
+    color: #4ade80;
+    border: 1px solid #16a34a;
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
   }
   .highlight {
-    background-color: #111827;
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1px solid #1f2937;
-    font-size: 12px;
-    line-height: 1.5;
-    margin-bottom: 12px;
+    background: linear-gradient(135deg, #111827, #0d1a2d);
+    border-left: 4px solid #22c55e;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 20px;
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 16px 0;
     color: #d1fae5;
+  }
+  table {
+    font-size: 15px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  th {
+    background: #111827;
+    color: #4ade80;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 2px solid #16a34a;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #1f2937;
+    color: #e5e7eb;
   }
 ---
 
 <!-- _class: lead -->
 
-# KrishiCash
-### AI-Powered Cash Flow & Risk Oracle for Rural Micro-enterprises
+<div class="tag">NABARD Hackathon · GFF 2026</div>
 
-**Team:** Team KrishiCash
-**NABARD Hackathon @ GFF 2026**
+# KrishiCash
+### AI-Powered Cash Flow & Risk Oracle
+### for Rural Micro-enterprises
+
+**Team KrishiCash** &nbsp;|&nbsp; Theme: AI for Rural Finance
 
 ---
 
 ## 🚨 The Core Problem
 
-- **The Credit Gap:** 87M+ rural households lack access to formal credit.
-- **Data Blindspots:** Traditional financial institutions cannot assess risk without CIBIL scores or formal financial histories.
-- **The Result:** 
-  - High rejection rates for capable, honest borrowers.
-  - Unexpected loan defaults (NPAs) due to unforeseen hyper-local risks like droughts or commodity price crashes.
+- **87M+** rural households lack access to formal credit
+- **No CIBIL scores** — traditional lenders can't assess risk
+- Lenders face **surprise NPAs** from hyper-local risks
+  - Drought, crop failure, local market price crashes
+
+> **₹1.2 lakh crore** lost annually to rural NPAs
 
 ---
 
-## 💡 Our Solution: KrishiCash
-
-A **B2B predictive risk assessment platform** designed for MFIs, Regional Rural Banks, and NBFCs.
+## 💡 Our Solution
 
 <div class="highlight">
-By synthesizing alternative, hyper-local data with basic transaction records, KrishiCash accurately forecasts future cash flows and generates dynamic risk scores.
+KrishiCash is a B2B AI platform that replaces guesswork with data — using satellite imagery, weather forecasts, and market prices to predict cash flows before a loan is approved.
 </div>
 
-- **Fast:** Real-time API-driven decisions.
-- **Inclusive:** Requires zero traditional credit history.
-- **Explainable:** Transparent AI that tells loan officers exactly *why* a risk is flagged.
+- ⚡ **Fast** — Real-time API decisions
+- 🌍 **Inclusive** — No formal credit history needed
+- 🔍 **Explainable** — Every score has a reason
 
 ---
 
-## ⚙️ Technology & Architecture
+## ⚙️ How It Works
 
-KrishiCash leverages modern AI and open data layers:
-
-- **Alternative Data Feeds:** 
-  - 🛰️ Satellite NDVI (Google Earth Engine) for crop health.
-  - 🌧️ OpenWeather/IMD for localized climate risk.
-  - 📊 eNAM/Agmarknet for live commodity pricing.
-- **AI Inference Layer:** XGBoost & PyTorch time-series models for cash flow forecasting.
-- **Application Layer:** FastAPI backend serving a React.js dashboard for loan officers.
-
----
-
-## 💼 Business Model & Impact
-
-- **Target Customers:** Microfinance Institutions (MFIs), Regional Rural Banks.
-- **Revenue Model:** B2B SaaS / Pay-per-API-call (₹15–₹50 per assessment).
-- **Value Proposition:** 
-  - Reduces NPAs by an estimated **15-20%**.
-  - Safely expands the eligible borrower base by utilizing alternative data.
-- **Social Impact:** Democratizes access to capital, empowering rural entrepreneurs and stabilizing agricultural supply chains.
+| Data Signal | Source | Insight |
+|---|---|---|
+| 🛰️ Satellite NDVI | Google Earth Engine | Crop health & yield |
+| 🌧️ Rainfall Forecast | IMD / OpenWeather | Climate risk |
+| 📊 Commodity Price | eNAM / Agmarknet | Market risk |
+| 💧 Soil Moisture | ISRO Bhuvan | Ground stress |
+| 📱 Repayment History | MFI internal data | Behaviour risk |
 
 ---
 
-## 🗺️ Future Roadmap
+## 💼 Business Model
 
-- **Phase 1 (Now - GFF 2026):** Prototype cash flow prediction model on historical open data with live dashboard.
-- **Phase 2 (6 Months):** Live pilot integration with a regional MFI for real-world validation on 1,000+ borrowers.
-- **Phase 3 (Year 1+):** Multi-state rollout and expansion into automated crop insurance payouts based on the same satellite intelligence.
+- **Customers:** MFIs, Regional Rural Banks, NBFCs
+- **Revenue:** ₹15–₹50 per risk assessment (B2B SaaS)
+- **ROI for lenders:** Reduce NPAs by **15–20%**
+- **Social impact:** 5M+ new rural borrowers reached
+
+---
+
+## 🗺️ Roadmap
+
+- **Phase 1 — Now:** Prototype dashboard + scoring model
+- **Phase 2 — 6 months:** Live pilot with a regional MFI
+- **Phase 3 — Year 1+:** Multi-state rollout & crop insurance
 
 ---
 
@@ -131,4 +172,5 @@ KrishiCash leverages modern AI and open data layers:
 # Thank You
 
 **Ready to revolutionize rural finance.**
-*Code available on GitHub.*
+
+🌐 *github.com/swatiicfai/KrishiCash*
