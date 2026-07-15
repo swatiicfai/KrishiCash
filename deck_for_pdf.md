@@ -7,34 +7,52 @@ style: |
     background-color: #0a0f1e;
     color: #e5e7eb;
     font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    padding: 50px 70px;
   }
   h1, h2, h3 {
     color: #22c55e;
   }
   h1 {
-    font-size: 3.5rem;
+    font-size: 2.4rem;
     font-weight: 800;
+    margin-bottom: 10px;
   }
   h2 {
-    font-size: 2.5rem;
+    font-size: 1.7rem;
+    font-weight: 700;
     border-bottom: 2px solid #16a34a;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: #9ca3af;
+    font-weight: 400;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
   }
   strong {
     color: #4ade80;
   }
   ul {
-    font-size: 1.5rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.7;
   }
   li {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
   }
   .highlight {
     background-color: #111827;
-    padding: 20px;
-    border-radius: 15px;
+    padding: 16px 20px;
+    border-radius: 12px;
     border: 1px solid #1f2937;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #d1fae5;
   }
 ---
 
