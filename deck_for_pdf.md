@@ -43,7 +43,7 @@ style: |
 # KrishiCash
 ### AI-Powered Cash Flow & Risk Oracle for Rural Micro-enterprises
 
-**Team:** [Your Team Name]
+**Team:** Team KrishiCash
 **NABARD Hackathon @ GFF 2026**
 
 ---
