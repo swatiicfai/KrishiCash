@@ -17,6 +17,7 @@ const statCards = [
 
 export default function App() {
   const [selectedId, setSelectedId] = useState(borrowerProfiles[0].id);
+  const [approvedLoans, setApprovedLoans] = useState({});
 
   const borrower = borrowerProfiles.find((b) => b.id === selectedId);
   const signals = alternativeDataSignals[selectedId];
@@ -137,8 +138,12 @@ export default function App() {
                       : "text-red-400"
                     }`}>{borrower.cashflowTrend}</p>
                   </div>
-                  <button className="btn-primary text-sm">
-                    Approve Loan
+                  <button 
+                    onClick={() => setApprovedLoans(prev => ({ ...prev, [selectedId]: true }))}
+                    className={`text-sm ${approvedLoans[selectedId] ? 'bg-green-900/40 text-green-400 border border-green-700/50 px-6 py-2.5 rounded-xl font-semibold shadow-inner' : 'btn-primary'}`}
+                    disabled={approvedLoans[selectedId]}
+                  >
+                    {approvedLoans[selectedId] ? '✅ Approved' : 'Approve Loan'}
                   </button>
                 </div>
               </div>
