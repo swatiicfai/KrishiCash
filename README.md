@@ -6,6 +6,23 @@
 [![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
+### 🌟 Quick Links
+- 🚀 **Live Demo:** [krishi-cash-91lz7cd08-context-onboarding-buddy.vercel.app](https://krishi-cash-91lz7cd08-context-onboarding-buddy.vercel.app/)
+- 📺 **Video Presentation:** [YouTube Link](https://youtu.be/KwSMy0TL3t8)
+- 📊 **Pitch Deck:** [KrishiCash_Idea_Deck.pdf](./KrishiCash_Idea_Deck.pdf)
+
+---
+
+## 📑 Table of Contents
+- [The Real Problem](#-the-real-problem)
+- [Our Solution: KrishiCash](#-our-solution-krishicash)
+- [Architecture](#-architecture)
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [API Usage Example](#-api-usage-example)
+- [Business Model](#-business-model)
+- [Roadmap](#-roadmap)
+
 ---
 
 ## 🚨 The Real Problem
