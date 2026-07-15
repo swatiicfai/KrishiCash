@@ -7,51 +7,55 @@ style: |
     background-color: #0a0f1e;
     color: #e5e7eb;
     font-family: 'Inter', sans-serif;
-    font-size: 22px;
-    padding: 50px 70px;
+    font-size: 16px;
+    padding: 40px 60px;
   }
   h1, h2, h3 {
     color: #22c55e;
   }
   h1 {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
   h2 {
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     font-weight: 700;
     border-bottom: 2px solid #16a34a;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
   }
   h3 {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: #9ca3af;
     font-weight: 400;
+    margin-top: 4px;
   }
   p {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    margin: 6px 0;
   }
   strong {
     color: #4ade80;
   }
   ul {
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    margin: 0;
+    padding-left: 1.4em;
   }
   li {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .highlight {
     background-color: #111827;
-    padding: 16px 20px;
-    border-radius: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
     border: 1px solid #1f2937;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    margin-bottom: 14px;
     color: #d1fae5;
   }
 ---
